@@ -2,7 +2,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { AuthProvider } from '@/context/AuthContext'
-import { RootLayoutContent } from '@/components/RootLayoutContent'
 import { ApolloProvider } from '@apollo/client'
 import client from '../lib/apollo-client'
 import { getPort } from '@/utils/getPort'
@@ -25,9 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ApolloProvider client={client}>
-          <AuthProvider>
-            <RootLayoutContent>{children}</RootLayoutContent>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </ApolloProvider>
         <div id="app-port" data-port={port} style={{ display: 'none' }}></div>
       </body>

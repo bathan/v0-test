@@ -1,41 +1,27 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  ClipboardList,
-  Settings,
-  Wheat,
-  Users,
-  Flag,
-  Map,
-  Building2,
-  MapPin,
-  Wand2,
-  BarChart,
-  Dna,
-  LayoutTemplate
-} from 'lucide-react'
-import { useAuth } from '@/context/AuthContext'
+import { ClipboardList, Settings, Wheat, Users, Flag, Map, Building2, MapPin, Wand2, BarChart, Dna, LayoutTemplate } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from '@/components/ui/accordion'
 
 const menuItems = [
-  {
-    name: 'Trials',
-    icon: ClipboardList,
+  { 
+    name: 'Trials', 
+    icon: ClipboardList, 
     href: '/dashboard/trials'
   },
-  {
-    name: 'Producers',
-    icon: Users,
+  { 
+    name: 'Producers', 
+    icon: Users, 
     href: '/dashboard/producers'
   },
   {
@@ -43,13 +29,13 @@ const menuItems = [
     icon: BarChart,
     href: '/dashboard/charts'
   },
-  {
-    name: 'Settings',
+  { 
+    name: 'Settings', 
     icon: Settings,
     subItems: [
       { name: 'Crops', icon: Wheat, href: '/dashboard/settings/crops' },
       { name: 'Hybrids', icon: Dna, href: '/dashboard/hybrids' },
-      { name: 'Campaigns', icon: Flag, href: '/dashboard/settings/campaigns' }
+      { name: 'Campaigns', icon: Flag, href: '/dashboard/settings/campaigns' },
     ]
   },
   {
@@ -58,7 +44,7 @@ const menuItems = [
     subItems: [
       { name: 'Zones', icon: Map, href: '/dashboard/zones' },
       { name: 'States', icon: Building2, href: '/dashboard/states' },
-      { name: 'Locations', icon: MapPin, href: '/dashboard/locations' }
+      { name: 'Locations', icon: MapPin, href: '/dashboard/locations' },
     ]
   },
   {
@@ -72,24 +58,17 @@ const menuItems = [
     subItems: [
       { name: 'Elminster', icon: Wand2, href: '/dashboard/iframe/Elminster' },
       { name: 'Gandalf', icon: Wand2, href: '/dashboard/iframe/Gandalf' },
-      { name: 'Dumbledore', icon: Wand2, href: '/dashboard/iframe/Dumbledore' }
+      { name: 'Dumbledore', icon: Wand2, href: '/dashboard/iframe/Dumbledore' },
     ]
   }
 ]
 
 export function LeftNavMenu() {
   const pathname = usePathname()
-  const [openAccordion, setOpenAccordion] = useState<string | undefined>(
-    'item-1'
-  )
-  const { updateLastActivity } = useAuth()
-
-  const handleMenuItemClick = useCallback(() => {
-    updateLastActivity()
-  }, [updateLastActivity])
+  const [openAccordion, setOpenAccordion] = useState<string | undefined>('item-1')
 
   return (
-    <nav className="w-64 bg-white shadow-md flex flex-col h-screen">
+    <nav className="w-64 bg-primary text-primary-foreground shadow-md flex flex-col h-screen">
       <ul className="space-y-2 p-4 flex-grow">
         {menuItems.map((item, index) => (
           <li key={item.name}>
@@ -101,7 +80,7 @@ export function LeftNavMenu() {
                 onValueChange={setOpenAccordion}
               >
                 <AccordionItem value={`item-${index}`}>
-                  <AccordionTrigger className="flex items-center justify-start py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md w-full">
+                  <AccordionTrigger className="flex items-center justify-start py-2 px-4 text-primary-foreground hover:bg-primary/90 rounded-md w-full">
                     <item.icon className="mr-2 h-5 w-5" />
                     {item.name}
                   </AccordionTrigger>
@@ -109,13 +88,12 @@ export function LeftNavMenu() {
                     <ul className="ml-6 space-y-2">
                       {item.subItems.map((subItem) => (
                         <li key={subItem.name}>
-                          <Link
-                            href={subItem.href}
+                          <Link 
+                            href={subItem.href} 
                             className={cn(
-                              'flex items-center justify-start py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md w-full',
-                              pathname === subItem.href && 'bg-gray-200'
+                              "flex items-center justify-start py-2 px-4 text-primary-foreground hover:bg-primary/90 rounded-md w-full",
+                              pathname === subItem.href && "bg-secondary text-secondary-foreground"
                             )}
-                            onClick={handleMenuItemClick}
                           >
                             <subItem.icon className="mr-2 h-5 w-5" />
                             {subItem.name}
@@ -127,13 +105,12 @@ export function LeftNavMenu() {
                 </AccordionItem>
               </Accordion>
             ) : (
-              <Link
-                href={item.href}
+              <Link 
+                href={item.href} 
                 className={cn(
-                  'flex items-center justify-start py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md w-full',
-                  pathname === item.href && 'bg-gray-200'
+                  "flex items-center justify-start py-2 px-4 text-primary-foreground hover:bg-primary/90 rounded-md w-full",
+                  pathname === item.href && "bg-secondary text-secondary-foreground"
                 )}
-                onClick={handleMenuItemClick}
               >
                 <item.icon className="mr-2 h-5 w-5" />
                 {item.name}
@@ -145,3 +122,4 @@ export function LeftNavMenu() {
     </nav>
   )
 }
+

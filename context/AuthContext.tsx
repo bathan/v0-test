@@ -11,29 +11,46 @@ import React, {
 import { useRouter } from 'next/navigation'
 import { InactivityModal } from '@/components/InactivityModal'
 
+type PillChoice = 'red' | 'blue' | null
+
 interface AuthContextType {
   user: string | null
-  login: (username: string) => void
+  login: (username: string, password: string) => Promise<boolean>
   logout: () => void
+  pillChoice: PillChoice
+  setPillChoice: (choice: PillChoice) => void
   updateLastActivity: () => void
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  login: async () => false,
+  logout: () => {},
+  pillChoice: null,
+  setPillChoice: () => {},
+  updateLastActivity: () => {}
+})
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<string | null>(null)
   const lastActivityRef = useRef(Date.now())
   const [showInactivityModal, setShowInactivityModal] = useState(false)
   const router = useRouter()
+  const [pillChoice, setPillChoice] = useState<PillChoice>(null)
 
-  const login = useCallback((username: string) => {
-    setUser(username)
-    updateLastActivity()
-    document.cookie = `currentUser=${username}; path=/; max-age=86400`
-  }, [])
+  const login = useCallback(
+    async (username: string, password: string): Promise<boolean> => {
+      setUser(username)
+      updateLastActivity()
+      document.cookie = `currentUser=${username}; path=/; max-age=86400`
+      return true
+    },
+    []
+  )
 
   const logout = useCallback(() => {
     setUser(null)
+    setPillChoice(null)
     document.cookie =
       'currentUser=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
     router.push('/login')
@@ -70,7 +87,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [logout])
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateLastActivity }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        updateLastActivity,
+        pillChoice,
+        setPillChoice
+      }}
+    >
       {children}
       <InactivityModal
         isOpen={showInactivityModal}

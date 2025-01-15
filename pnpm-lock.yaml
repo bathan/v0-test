@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: latest
-        version: 3.12.4(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.12.6(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hookform/resolvers':
         specifier: latest
         version: 3.10.0(react-hook-form@7.54.2(react@18.3.1))
@@ -174,12 +174,18 @@ importers:
       '@types/node':
         specifier: ^22
         version: 22.10.5
+      '@types/plotly.js':
+        specifier: ^2.35.2
+        version: 2.35.2
       '@types/react':
         specifier: ^18
         version: 18.3.18
       '@types/react-dom':
         specifier: ^18
         version: 18.3.5(@types/react@18.3.18)
+      '@types/react-plotly.js':
+        specifier: ^2.6.3
+        version: 2.6.3
       postcss:
         specifier: ^8
         version: 8.4.49
@@ -196,8 +202,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@apollo/client@3.12.4':
-    resolution: {integrity: sha512-S/eC9jxEW9Jg1BjD6AZonE1fHxYuvC3gFHop8FRQkUdeK63MmBD5r0DOrN2WlJbwha1MSD6A97OwXwjaujEQpA==}
+  '@apollo/client@3.12.6':
+    resolution: {integrity: sha512-MOEtkojZagMKB7nxlwQ426eaBYwEs/Xfn+JeLOd81wv6j7toKo57eEGAbJdZwyXGRgtiqDkX5gx3EzE7qtarXA==}
     peerDependencies:
       graphql: ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -1102,6 +1108,9 @@ packages:
   '@types/pbf@3.0.5':
     resolution: {integrity: sha512-j3pOPiEcWZ34R6a6mN07mUkM4o4Lwf6hPNt8eilOeZhTFbxFXmKhvXl9Y28jotFPaI1bpPDJsbCprUoNke6OrA==}
 
+  '@types/plotly.js@2.35.2':
+    resolution: {integrity: sha512-tn0Kp7F6VWiu96jknCvR/PcdIGIATeIK+Z5WXH3bEvG6CRwUNfhy34yBhfPYmTea7mMQxXvTZKGMm6/Y4wxESg==}
+
   '@types/prop-types@15.7.14':
     resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
 
@@ -1109,6 +1118,9 @@ packages:
     resolution: {integrity: sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==}
     peerDependencies:
       '@types/react': ^18.0.0
+
+  '@types/react-plotly.js@2.6.3':
+    resolution: {integrity: sha512-HBQwyGuu/dGXDsWhnQrhH+xcJSsHvjkwfSRjP+YpOsCCWryIuXF78ZCBjpfgO3sCc0Jo8sYp4NOGtqT7Cn3epQ==}
 
   '@types/react@18.3.18':
     resolution: {integrity: sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==}
@@ -2531,8 +2543,8 @@ packages:
     engines: {node: '>= 0.4'}
     hasBin: true
 
-  response-iterator@0.2.11:
-    resolution: {integrity: sha512-5tdhcAeGMSyM0/FoxAYjoOxQZ2tRR2H/S/t6kGRXu6iiWcGY5UnZgkVANbTwBVUSGqWu0ADctmoi6lOCIF8uKQ==}
+  response-iterator@0.2.16:
+    resolution: {integrity: sha512-QmLnoE4cJXjCoYjEtYu5zmBMs/1ytHU1RhbBm9/DUKTR641k46qCinzPiOzJJk9r71rxYbuMwM+dExPxlFTrzA==}
     engines: {node: '>=0.8'}
 
   reusify@1.0.4:
@@ -2945,7 +2957,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@apollo/client@3.12.4(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@apollo/client@3.12.6(@types/react@18.3.18)(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
       '@wry/caches': 1.0.1
@@ -2957,7 +2969,7 @@ snapshots:
       optimism: 0.18.1
       prop-types: 15.8.1
       rehackt: 0.1.0(@types/react@18.3.18)(react@18.3.1)
-      response-iterator: 0.2.11
+      response-iterator: 0.2.16
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
       tslib: 2.8.1
@@ -3933,10 +3945,17 @@ snapshots:
 
   '@types/pbf@3.0.5': {}
 
+  '@types/plotly.js@2.35.2': {}
+
   '@types/prop-types@15.7.14': {}
 
   '@types/react-dom@18.3.5(@types/react@18.3.18)':
     dependencies:
+      '@types/react': 18.3.18
+
+  '@types/react-plotly.js@2.6.3':
+    dependencies:
+      '@types/plotly.js': 2.35.2
       '@types/react': 18.3.18
 
   '@types/react@18.3.18':
@@ -5512,7 +5531,9 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  response-iterator@0.2.11: {}
+  response-iterator@0.2.16:
+    dependencies:
+      readable-stream: 2.3.8
 
   reusify@1.0.4: {}
 
